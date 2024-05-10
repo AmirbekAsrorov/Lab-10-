@@ -123,14 +123,13 @@ int main() {
     vector<double> averages;
     BFS(root, averages);
 
-    cout << "Average values on each level: [";
+    cout << "Average values on each level: ";
     for(int i = 0; i < averages.size(); ++i) {
         cout << averages[i];
-        if(i != averages.size() - 1)
-            cout << ", ";
+        if(i != averages.size()-1)
+            cout << " ";
     }
-    cout << "]" << endl;
+    cout << " " << endl;
 
     return 0;
 }
-
