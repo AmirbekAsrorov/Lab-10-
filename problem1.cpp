@@ -137,24 +137,29 @@ Node *deleteNode(Node *node, int key){
     return node;
 }
 
-void printQueue(Node *root) {
+void printLevelOrder(Node* root) {
     if (root == nullptr)
         return;
-    queue<Node *> q;
+
+    queue<Node*> q;
     q.push(root);
+
     while (!q.empty()) {
-        Node *node = q.front();
-        q.pop();
-        cout << node->key << " ";
-        if (node->left)
-            q.push(node->left);
-        if (node->right)
-            q.push(node->right);
+        int size = q.size();
+        while (size--) {
+            Node* current = q.front();
+            q.pop();
+            cout << current->key << " ";
+            if (current->left)
+                q.push(current->left);
+            if (current->right)
+                q.push(current->right);
+        }
     }
 }
 
 int main() {
-    int n, valueToDelete;
+    int n, deleteValue;
     cin >> n;
     Node *root = NULL;
 
@@ -164,10 +169,12 @@ int main() {
         root = insertNode(root, value);
     }
 
-    cin >> valueToDelete;
-    root = deleteNode(root, valueToDelete);
+    cin >> deleteValue;
+    root = deleteNode(root, deleteValue);
 
-    printQueue(root);
+   // cout << "Resulting tree in form of a queue: ";
+    printLevelOrder(root);
+    cout << endl;
 
     return 0;
 }
